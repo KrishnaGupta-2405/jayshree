@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 import time
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib import colors
@@ -259,7 +259,7 @@ with st.sidebar:
             label_visibility="collapsed"
         )
         st.divider()
-        if st.button("🚪 Logout", use_container_width=True):
+        if st.button("🚪 Logout",width='stretch'):
             st.session_state.logged_in = False
             st.rerun()
 
@@ -282,7 +282,7 @@ if not st.session_state.logged_in:
             user = st.text_input("Username", placeholder="Choose a username")
             pwd = st.text_input("Password", type="password", placeholder="Choose a password")
             st.write("")
-            if st.button("✅ Register", use_container_width=True, type="primary"):
+            if st.button("✅ Register",width='stretch', type="primary"):
                 if user and pwd:
                     c.execute("INSERT INTO users VALUES (?,?)", (user, pwd))
                     conn.commit()
@@ -296,7 +296,7 @@ if not st.session_state.logged_in:
             user = st.text_input("Username", placeholder="Enter your username")
             pwd = st.text_input("Password", type="password", placeholder="Enter your password")
             st.write("")
-            if st.button("🔓 Login", use_container_width=True, type="primary"):
+            if st.button("🔓 Login", width='stretch', type="primary"):
                 c.execute("SELECT * FROM users WHERE username=? AND password=?", (user, pwd))
                 if c.fetchone():
                     st.session_state.logged_in = True
@@ -328,7 +328,7 @@ else:
                 key="url_input"
             )
         with col_btn:
-            scan_clicked = st.button("🚀 Scan", use_container_width=True, type="primary")
+            scan_clicked = st.button("🚀 Scan",width='stretch', type="primary")
 
         if url != st.session_state.last_url:
             st.session_state.result = None
@@ -499,6 +499,6 @@ else:
             st.subheader("🗂️ Full History")
             st.dataframe(
                 df[["URL", "Risk", "Score"]],
-                use_container_width=True,
+                width='stretch',
                 hide_index=True
             )

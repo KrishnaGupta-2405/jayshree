@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -64,7 +63,7 @@ def fetch_policy(url):
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-infobars")
 
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(service=Service("/usr/local/bin/chromedriver"),options=options)
         driver.get(url)
         time.sleep(3)
 

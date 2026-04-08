@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib import colors
@@ -64,7 +65,7 @@ def fetch_policy(url):
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-infobars")
 
-        driver = webdriver.Chrome(service=Service("/usr/local/bin/chromedriver"),options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
         driver.get(url)
         time.sleep(3)
 
